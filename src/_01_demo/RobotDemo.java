@@ -36,6 +36,7 @@ public class RobotDemo {
 		rob.changeRobot(url);
 		rob.setSpeed(10);
 		rob.penDown();
+		
 	}
 
 	 public static void demo2() {
@@ -63,6 +64,6 @@ public class RobotDemo {
 
 
 	public static void main(String[] args) {
-		demo2();
+		demo1();
 	}
 }
