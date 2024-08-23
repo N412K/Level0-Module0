@@ -16,14 +16,15 @@ public class DragonFight {
 		// 1. Create some variables to hold health levels
 		
 			// playerHealth to store your health - set it equal to 100
-	
+		double HP = 100;
 			// dragonHealth to store the dragon's health - set it equal to 100
-
+		double bossHP = 100;
 		// 2. Create some variables to hold the attack strengths. These will be given different values later. 
 		
 			// playerAttack to store the damage the player's attack will do - set it equal
 			// to 0 for now.
-	
+			double playerAttack = 0;
+			double bossAttack = 0;
 			// dragonAttack to store the damage the dragon's attack will do - set it equal
 			// to 0 for now.
 
@@ -35,9 +36,25 @@ public class DragonFight {
 
 				// 3. Ask the player in a pop-up if they want to attack the dragon with a yell
 				// or a kick
-	
+				String playerChoice = JOptionPane.showInputDialog(null, "What will do");
 				// 4. If they typed in "yell":
-	
+				if (playerChoice == "yell") {
+					playerAttack = 0;
+					System.out.println("PlayerAttack is "+playerAttack);
+				}
+				if (playerChoice == "punch") {
+					playerAttack = ran.nextInt(11);
+					System.out.println("PlayerAttack is "+playerAttack);
+				}
+				if (playerChoice == "kick") {
+					if (Math.random() == 0) {
+						playerAttack = 100;
+						return;
+					}
+					playerAttack = ran.nextInt(11);
+					System.out.println("PlayerAttack is "+playerAttack);
+				}
+				
 					  // -- Find a random number between 0 and 10 and store it in playerAttack. Use
 					  // ran.nextInt(10)
 			
@@ -46,19 +63,33 @@ public class DragonFight {
 					  // -- Find a random number between 0 and 25 and store it in playerAttack.
 		
 				// 6. Subtract the player attack value from the dragon's health
-
+				if (playerAttack == 100) {
+					JOptionPane.showMessageDialog(null, "u hit the dragon where it hurts 0_0");
+				}
+				bossHP = bossHP - playerAttack;
 			// THE DRAGON RETALIATES
 
 				// 7. Find a random number between 0 and 35 and store it in dragonAttack
-	
+				bossAttack = ran.nextInt(36);
 				// 8. Subtract the dragon attack value from the player's health
-
+				HP = HP - bossAttack;
 			// ASSESS THE DAMAGE
 
 				// 9. If the player's health is less than or equal to 0, the game is over,
 				//    call the playerLost() method
-	
-			
+				if (HP <= 0) {
+					if (bossHP <= 0) {
+						JOptionPane.showMessageDialog(null, "you died to the dragon's ghost");
+						System.exit(0);
+					}
+					JOptionPane.showMessageDialog(null, "you died");
+					System.exit(0);
+				}
+				if (bossHP <= 0); {
+					JOptionPane.showMessageDialog(null, "you lived with "+HP+ " HP");
+					System.exit(0);
+				}}
+
 				// 10. If the dragon's health is less than or equal to 0, the game is over,
 				//     call the dragonLost() method
 
@@ -73,7 +104,7 @@ public class DragonFight {
 
 		} // this is the end of the while loop
 
-	}
+
 
 	static void playerLost() {
 		// 11. Tell the player that they have been defeated by the dragon and have no treasure
